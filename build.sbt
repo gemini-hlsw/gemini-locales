@@ -5,7 +5,7 @@ name in ThisBuild := "gemini-locales"
 
 version := s"0.1.0-${dbVersion.value.id}"
 
-scalaVersion := "2.12.7"
+scalaVersion := "2.12.8"
 
 // Adjust to your local layout
 publishTo := Some(Resolver.file("file", Path.userHome / "Projects" / "maven-repo") )
@@ -14,10 +14,10 @@ val zonesFilterFn = {(z: String) => z == "America/Santiago" || z == "Pacific/Hon
 
 zonesFilter := zonesFilterFn
 
-dbVersion := TzdbPlugin.Version("2018f")
+dbVersion := TzdbPlugin.Version("2019a")
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.0.0-M13"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.0.0-RC1"
 )
 
 organization := "edu.gemini"
