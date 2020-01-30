@@ -3,8 +3,6 @@ enablePlugins(TzdbPlugin)
 
 name in ThisBuild := "gemini-locales"
 
-version := s"0.2.0-${dbVersion.value.id}"
-
 Global / onChangedBuildSource := IgnoreSourceChanges
 
 val zonesFilterFn = {(z: String) => z == "America/Santiago" || z == "Pacific/Honolulu"}
@@ -18,9 +16,8 @@ libraryDependencies ++= Seq(
 )
 
 inThisBuild(Seq(
-  homepage := Some(url("https://github.com/gemini-hlsw/gsp-core")),
-  resolvers += "Gemini Repository" at "https://github.com/gemini-hlsw/maven-repo/raw/master/releases", // for gemini-locales
-  crossScalaVersions := Seq(scalaVersion.value), // for now, until we get doobie/fs2 upgraded
+  organization := "edu.gemini",
+  homepage := Some(url("https://github.com/gemini-hlsw/gemini-locales")),
 ) ++ gspPublishSettings)
 
 // doesn't work to do this `inThisBuild`
@@ -29,3 +26,7 @@ lazy val commonSettings = Seq(
     "-Xfatal-warnings"
   )
 )
+
+scalaVersion := "2.13.1"
+
+crossScalaVersions := Seq("2.13.1", "2.12.10")
