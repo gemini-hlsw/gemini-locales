@@ -3,33 +3,30 @@ enablePlugins(TzdbPlugin)
 
 name in ThisBuild := "gemini-locales"
 
-version := s"0.1.0-${dbVersion.value.id}"
-
-scalaVersion := "2.12.8"
-
-// Adjust to your local layout
-publishTo := Some(Resolver.file("file", Path.userHome / "Projects" / "maven-repo") )
+Global / onChangedBuildSource := IgnoreSourceChanges
 
 val zonesFilterFn = {(z: String) => z == "America/Santiago" || z == "Pacific/Honolulu"}
 
 zonesFilter := zonesFilterFn
 
-dbVersion := TzdbPlugin.Version("2019a")
+dbVersion := TzdbPlugin.Version("2019c")
 
 libraryDependencies ++= Seq(
   "io.github.cquiroz" %%% "scala-java-time" % "2.0.0-RC3"
 )
 
-organization := "edu.gemini"
+inThisBuild(Seq(
+  organization := "edu.gemini",
+  homepage := Some(url("https://github.com/gemini-hlsw/gemini-locales")),
+) ++ gspPublishSettings)
 
-description := "Gemini locales db for Scala.js applications"
+// doesn't work to do this `inThisBuild`
+lazy val commonSettings = Seq(
+  Compile / doc / scalacOptions --= Seq(
+    "-Xfatal-warnings"
+  )
+)
 
-homepage := Some(url("https://github.com/gemini-hlsw/gemini-locales"))
+scalaVersion := "2.13.1"
 
-licenses := Seq(
-  "BSD 3-Clause License" -> url(
-    "https://opensource.org/licenses/BSD-3-Clause"))
-
-publishMavenStyle in ThisBuild := true
-
-pomIncludeRepository := { _ => false }
+crossScalaVersions := Seq("2.13.1", "2.12.10")
