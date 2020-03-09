@@ -12,7 +12,7 @@ zonesFilter := zonesFilterFn
 dbVersion := TzdbPlugin.Version("2019c")
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.0.0-RC3"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.0.0-RC4"
 )
 
 inThisBuild(Seq(
