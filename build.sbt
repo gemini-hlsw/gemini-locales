@@ -30,7 +30,7 @@ libraryDependencies ++= Seq(
 inThisBuild(Seq(
   organization := "edu.gemini",
   homepage := Some(url("https://github.com/gemini-hlsw/gemini-locales")),
-) ++ gspPublishSettings)
+) ++ lucumaPublishSettings)
 
 // doesn't work to do this `inThisBuild`
 lazy val commonSettings = Seq(
@@ -39,6 +39,3 @@ lazy val commonSettings = Seq(
   )
 )
 
-scalaVersion := "2.13.1"
-
-crossScalaVersions := Seq("2.13.1", "2.12.10")
