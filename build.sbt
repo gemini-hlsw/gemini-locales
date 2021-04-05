@@ -4,8 +4,6 @@ enablePlugins(LocalesPlugin)
 
 import locales._
 
-name in ThisBuild := "gemini-locales"
-
 Global / onChangedBuildSource := IgnoreSourceChanges
 
 Global / resolvers += Resolver.sonatypeRepo("public")
