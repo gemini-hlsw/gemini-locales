@@ -4,8 +4,6 @@ enablePlugins(LocalesPlugin)
 
 import locales._
 
-name in ThisBuild := "gemini-locales"
-
 Global / onChangedBuildSource := IgnoreSourceChanges
 
 Global / resolvers += Resolver.sonatypeRepo("public")
@@ -14,9 +12,9 @@ val zonesFilterFn = {(z: String) => z == "America/Santiago" || z == "Pacific/Hon
 
 zonesFilter := zonesFilterFn
 
-dbVersion := TzdbPlugin.Version("2019c")
+dbVersion := TzdbPlugin.Version("2021a")
 
-cldrVersion := CLDRVersion.Version("36")
+cldrVersion := CLDRVersion.Version("38.1")
 
 localesFilter := LocalesFilter.Selection("en-US")
 
