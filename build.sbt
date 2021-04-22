@@ -21,7 +21,7 @@ localesFilter := LocalesFilter.Selection("en-US")
 supportNumberFormats := false
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.2.1",
+  "io.github.cquiroz" %%% "scala-java-time" % "2.2.2",
   "org.portable-scala" %% "portable-scala-reflect" % "1.1.1"
 )
 
