@@ -1,6 +1,6 @@
 addSbtPlugin("org.scala-js"      % "sbt-scalajs"    % "1.8.0")
 
-addSbtPlugin("io.github.cquiroz" % "sbt-tzdb"       % "1.1.0")
+addSbtPlugin("io.github.cquiroz" % "sbt-tzdb"       % "2.0.0")
 
 addSbtPlugin("io.github.cquiroz" % "sbt-locales"    % "3.0.0")
 
