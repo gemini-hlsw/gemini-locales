@@ -1,4 +1,4 @@
-ThisBuild / tlBaseVersion := "0.6"
+ThisBuild / tlBaseVersion := "0.7"
 ThisBuild / tlCiReleaseBranches := Seq("master")
 
 enablePlugins(ScalaJSPlugin)
