@@ -1,3 +1,6 @@
+ThisBuild / tlBaseVersion := "0.6"
+ThisBuild / tlCiReleaseBranches := Seq("master")
+
 enablePlugins(ScalaJSPlugin)
 enablePlugins(TzdbPlugin)
 enablePlugins(LocalesPlugin)
