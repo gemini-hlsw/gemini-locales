@@ -1,9 +1,11 @@
-addSbtPlugin("org.scala-js"      % "sbt-scalajs"    % "1.8.0")
+addSbtPlugin("io.github.cquiroz" % "sbt-tzdb" % "2.0.0")
 
-addSbtPlugin("io.github.cquiroz" % "sbt-tzdb"       % "2.0.0")
+addSbtPlugin("io.github.cquiroz" % "sbt-locales" % "3.1.0")
 
-addSbtPlugin("io.github.cquiroz" % "sbt-locales"    % "3.1.0")
+resolvers += Resolver.sonatypeRepo("snapshots")
+resolvers += "sonatype-s01-snapshots".at(
+  "https://s01.oss.sonatype.org/content/repositories/snapshots"
+)
+addSbtPlugin("edu.gemini" % "sbt-lucuma-lib" % "0.6-cde3ac9-SNAPSHOT")
 
-addSbtPlugin("edu.gemini"        % "sbt-lucuma"     % "0.4.2")
-
-addSbtPlugin("com.github.sbt"      % "sbt-ci-release" % "1.5.10")
+evictionErrorLevel := Level.Info
