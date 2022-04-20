@@ -34,11 +34,11 @@ libraryDependencies ++= {
   if (sv.startsWith("3"))
     // https://github.com/portable-scala/portable-scala-reflect/issues/23
     Seq(
-      "org.portable-scala"   % "portable-scala-reflect_sjs1_2.13" % "1.1.1"
+      "org.portable-scala"   % "portable-scala-reflect_sjs1_2.13" % "1.1.2"
     )
   else
     Seq(
-      "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.1"
+      "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.2"
     )
 }
 
