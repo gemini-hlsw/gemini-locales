@@ -23,7 +23,7 @@ localesFilter := LocalesFilter.Selection("en-US")
 
 supportNumberFormats := false
 
-crossScalaVersions := Seq("2.13.8", "3.1.2")
+crossScalaVersions := Seq("2.13.8", "3.1.3")
 
 libraryDependencies ++= Seq(
   "io.github.cquiroz" %%% "scala-java-time" % "2.4.0"
