@@ -9,13 +9,13 @@ import locales._
 
 Global / onChangedBuildSource := IgnoreSourceChanges
 
-Global / resolvers += Resolver.sonatypeRepo("public")
+Global / resolvers ++= Resolver.sonatypeOssRepos("public")
 
 val zonesFilterFn = { (z: String) => z == "America/Santiago" || z == "Pacific/Honolulu" }
 
 zonesFilter := zonesFilterFn
 
-dbVersion := TzdbPlugin.Version("2021a")
+dbVersion := TzdbPlugin.Version("2022a")
 
 cldrVersion := CLDRVersion.Version("38.1")
 
