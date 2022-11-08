@@ -22,3 +22,4 @@ project/metals.sbt
 node_modules/
 .idea/
 .bsp/
+.direnv/
