@@ -26,7 +26,7 @@ supportNumberFormats := false
 crossScalaVersions := Seq("2.13.8", "3.2.1")
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.4.0"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.5.0"
 )
 
 libraryDependencies ++= {
