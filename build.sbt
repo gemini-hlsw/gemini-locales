@@ -1,4 +1,4 @@
-ThisBuild / tlBaseVersion       := "0.9"
+ThisBuild / tlBaseVersion       := "0.10"
 ThisBuild / tlCiReleaseBranches := Seq("master")
 
 enablePlugins(ScalaJSPlugin)
@@ -23,10 +23,10 @@ localesFilter := LocalesFilter.Selection("en-US")
 
 supportNumberFormats := false
 
-crossScalaVersions := Seq("2.13.8", "3.2.1")
+crossScalaVersions := Seq("2.13.16", "3.3.5")
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.5.0"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.6.0"
 )
 
 libraryDependencies ++= {
@@ -34,11 +34,11 @@ libraryDependencies ++= {
   if (sv.startsWith("3"))
     // https://github.com/portable-scala/portable-scala-reflect/issues/23
     Seq(
-      "org.portable-scala"   % "portable-scala-reflect_sjs1_2.13" % "1.1.2"
+      "org.portable-scala"   % "portable-scala-reflect_sjs1_2.13" % "1.1.3"
     )
   else
     Seq(
-      "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.2"
+      "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.3"
     )
 }
 
