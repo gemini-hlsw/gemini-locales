@@ -1,4 +1,4 @@
-ThisBuild / tlBaseVersion       := "0.10"
+ThisBuild / tlBaseVersion       := "0.11"
 ThisBuild / tlCiReleaseBranches := Seq("master")
 
 enablePlugins(ScalaJSPlugin)
@@ -8,8 +8,6 @@ enablePlugins(LocalesPlugin)
 import locales._
 
 Global / onChangedBuildSource := IgnoreSourceChanges
-
-Global / resolvers ++= Resolver.sonatypeOssRepos("public")
 
 val zonesFilterFn = { (z: String) => z == "America/Santiago" || z == "Pacific/Honolulu" }
 
@@ -41,17 +39,3 @@ libraryDependencies ++= {
       "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.3"
     )
 }
-
-inThisBuild(
-  Seq(
-    organization := "edu.gemini",
-    homepage     := Some(url("https://github.com/gemini-hlsw/gemini-locales"))
-  ) ++ lucumaPublishSettings
-)
-
-// doesn't work to do this `inThisBuild`
-lazy val commonSettings = Seq(
-  Compile / doc / scalacOptions --= Seq(
-    "-Xfatal-warnings"
-  )
-)
