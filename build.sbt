@@ -21,21 +21,14 @@ localesFilter := LocalesFilter.Selection("en-US")
 
 supportNumberFormats := false
 
-crossScalaVersions := Seq("2.13.16", "3.3.5")
+scalaVersion := "3.3.5"
 
 libraryDependencies ++= Seq(
   "io.github.cquiroz" %%% "scala-java-time" % "2.6.0"
 )
 
 libraryDependencies ++= {
-  val sv = scalaBinaryVersion.value
-  if (sv.startsWith("3"))
-    // https://github.com/portable-scala/portable-scala-reflect/issues/23
-    Seq(
-      "org.portable-scala"   % "portable-scala-reflect_sjs1_2.13" % "1.1.3"
-    )
-  else
-    Seq(
-      "org.portable-scala" %%% "portable-scala-reflect"           % "1.1.3"
-    )
+  Seq(
+    ("org.portable-scala" %%% "portable-scala-reflect" % "1.1.3").cross(CrossVersion.for3Use2_13)
+  )
 }
