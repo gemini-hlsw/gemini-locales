@@ -21,7 +21,7 @@ localesFilter := LocalesFilter.Selection("en-US")
 
 supportNumberFormats := false
 
-scalaVersion := "3.3.6"
+scalaVersion := "3.7.0"
 
 libraryDependencies ++= Seq(
   "io.github.cquiroz" %%% "scala-java-time" % "2.6.0"
@@ -32,3 +32,5 @@ libraryDependencies ++= {
     ("org.portable-scala" %%% "portable-scala-reflect" % "1.1.3").cross(CrossVersion.for3Use2_13)
   )
 }
+
+libraryDependencies += "org.scala-lang" %% "scala3-library" % scalaVersion.value
