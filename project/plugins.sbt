@@ -2,6 +2,6 @@ addSbtPlugin("io.github.cquiroz" % "sbt-tzdb" % "4.3.0")
 
 addSbtPlugin("io.github.cquiroz" % "sbt-locales" % "4.5.0")
 
-addSbtPlugin("edu.gemini" % "sbt-lucuma-lib" % "0.14.12")
+addSbtPlugin("edu.gemini" % "sbt-lucuma-lib" % "0.14.13")
 
 evictionErrorLevel := Level.Info
