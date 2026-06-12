@@ -1,4 +1,4 @@
-addSbtPlugin("io.github.cquiroz" % "sbt-tzdb" % "4.3.0")
+addSbtPlugin("io.github.cquiroz" % "sbt-tzdb" % "5.0.0")
 
 addSbtPlugin("io.github.cquiroz" % "sbt-locales" % "4.5.0")
 
