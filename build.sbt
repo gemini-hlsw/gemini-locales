@@ -13,7 +13,7 @@ val zonesFilterFn = { (z: String) => z == "America/Santiago" || z == "Pacific/Ho
 
 zonesFilter := zonesFilterFn
 
-dbVersion := TzdbPlugin.Version("2022a")
+dbVersion := TzdbPlugin.Version("2026b")
 
 cldrVersion := CLDRVersion.Version("38.1")
 
@@ -24,7 +24,7 @@ supportNumberFormats := false
 scalaVersion := "3.3.8"
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.6.0"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.7.0"
 )
 
 libraryDependencies ++=
