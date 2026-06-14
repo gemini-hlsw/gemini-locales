@@ -24,7 +24,7 @@ supportNumberFormats := false
 scalaVersion := "3.3.8"
 
 libraryDependencies ++= Seq(
-  "io.github.cquiroz" %%% "scala-java-time" % "2.6.0"
+  "io.github.cquiroz" %%% "scala-java-time" % "2.7.0"
 )
 
 libraryDependencies ++=
