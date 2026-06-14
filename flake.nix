@@ -12,14 +12,16 @@
         scala-cli-overlay = final: prev: { scala-cli = pkgs-x86_64.scala-cli; };
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ typelevel-nix.overlay scala-cli-overlay ];
+          overlays = [ typelevel-nix.overlays.default scala-cli-overlay];
         };
-      in {
+
+      in
+      {
         devShell = pkgs.devshell.mkShell {
           imports = [ typelevel-nix.typelevelShell ];
           typelevelShell = {
             nodejs.enable = true;
-            jdk.package = pkgs.jdk17;
+            jdk.package = pkgs.jdk25;
           };
         };
       }
