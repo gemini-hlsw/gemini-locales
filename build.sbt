@@ -21,7 +21,7 @@ localesFilter := LocalesFilter.Selection("en-US")
 
 supportNumberFormats := false
 
-scalaVersion := "3.3.8"
+scalaVersion := "3.8.4"
 
 libraryDependencies ++= Seq(
   "io.github.cquiroz" %%% "scala-java-time" % "2.7.0"
