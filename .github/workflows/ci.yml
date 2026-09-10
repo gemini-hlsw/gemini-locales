@@ -59,14 +59,14 @@ jobs:
 
       - name: Check headers and formatting
         if: matrix.java == 'temurin@25' && matrix.os == 'ubuntu-22.04'
-        run: sbt '++ ${{ matrix.scala }}' headerCheckAll scalafmtCheckAll 'project /' scalafmtSbtCheck lucumaScalafmtCheck lucumaScalafixCheck
+        run: sbt '++ ${{ matrix.scala }}' headerCheckAll scalafmtCheckAll 'project /' scalafmtSbtCheck lucumaScalafmtCheck lucumaScalafixCheck lucumaSlackNotifyCheck
 
       - name: Check scalafix lints
         if: matrix.java == 'temurin@25' && matrix.os == 'ubuntu-22.04'
         run: sbt '++ ${{ matrix.scala }}' 'scalafixAll --check'
 
-      - name: Test
-        run: sbt '++ ${{ matrix.scala }}' test
+      - name: Test affected projects
+        run: sbt '++ ${{ matrix.scala }}' lucumaTestAffected
 
       - name: Check binary compatibility
         if: matrix.java == 'temurin@25' && matrix.os == 'ubuntu-22.04'
@@ -76,11 +76,20 @@ jobs:
         if: matrix.java == 'temurin@25' && matrix.os == 'ubuntu-22.04'
         run: sbt '++ ${{ matrix.scala }}' doc
 
-      - name: Aggregate coverage reports
-        run: sbt '++ ${{ matrix.scala }}' coverageReport coverageAggregate
+      - name: Make target directories
+        if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
+        run: mkdir -p target project/target
 
-      - name: Upload code coverage data
-        uses: codecov/codecov-action@v6
+      - name: Compress target directories
+        if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
+        run: tar cf targets.tar target project/target
+
+      - name: Upload target directories
+        if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
+        uses: actions/upload-artifact@v5
+        with:
+          name: target-${{ matrix.os }}-${{ matrix.java }}-${{ matrix.scala }}
+          path: targets.tar
 
   publish:
     name: Publish Artifacts
@@ -113,6 +122,16 @@ jobs:
         if: matrix.java == 'temurin@25' && steps.setup-java-temurin-25.outputs.cache-hit == 'false'
         run: sbt +update
 
+      - name: Download target directories (3)
+        uses: actions/download-artifact@v6
+        with:
+          name: target-${{ matrix.os }}-${{ matrix.java }}-3
+
+      - name: Inflate target directories (3)
+        run: |
+          tar xf targets.tar
+          rm targets.tar
+
       - name: Import signing key
         if: env.PGP_SECRET != '' && env.PGP_PASSPHRASE == ''
         env:
@@ -136,3 +155,21 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_CREDENTIAL_HOST: ${{ secrets.SONATYPE_CREDENTIAL_HOST }}
         run: sbt tlCiRelease
+
+  required-checks:
+    name: REQUIRED CHECKS FOR BRANCH PROTECTION - AGGREGATED
+    needs: [build]
+    if: always()
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Fail if a required job did not pass
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: |
+          echo "::error::a required job did not pass"
+          exit 1
+
+      - name: Report success
+        run: echo "all of build passed or were skipped"
